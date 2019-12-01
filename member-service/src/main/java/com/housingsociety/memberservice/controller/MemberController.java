@@ -41,7 +41,7 @@ public class MemberController {
         return memberDAO.getMemberById(memberId);
     }
 
-    @RequestMapping("/{memberFirstName}/{memberLastName}")
+    @RequestMapping("/member/{memberFirstName}/{memberLastName}")
     public Member getMemberDetailsByName(@PathVariable("memberFirstName") String memberFirstName, @PathVariable("memberLastName") String memberLastName)
     {
         return memberDAO.getMemberByName(memberFirstName, memberLastName);

@@ -170,7 +170,7 @@ public class MemberDAO {
 
     public List<Member> getMembersByApartmentId(String apartmentId) {
         return jdbc.query(
-                "select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId LIKE " + apartmentId + " ORDER by memberId DESC LIMIT 100",
+                "select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId LIKE '" + apartmentId + "%' ORDER by memberId DESC LIMIT 100",
                 (rs, i) -> new Member(rs.getString("memberId"),
                         rs.getString("gender").charAt(0),
                         rs.getString("memberFirstName"),
@@ -180,10 +180,10 @@ public class MemberDAO {
     }
 
     public Member getMemberById(String memberId) {
-        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId = " + memberId, Member.class);
+        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId = '" + memberId + "'", Member.class);
     }
 
     public Member getMemberByName(String memberFirstName, String memberLastName) {
-        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberFirstName = " + memberFirstName + " AND memberLastName = " + memberLastName, Member.class);
+        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberFirstName = '" + memberFirstName + "' AND memberLastName = '" + memberLastName + "'", Member.class);
     }
 }

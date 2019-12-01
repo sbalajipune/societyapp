@@ -49,8 +49,8 @@ public class MemberDAO {
             DriverManagerDataSource dm = new DriverManagerDataSource();
             dm.setDriverClassName("org.postgresql.Driver");
             dm.setUrl("jdbc:postgresql://" + dbHost + ":5432/" + dbName);
-            dm.setUsername(env.getProperty("POSTGRES_USER", "postgresql"));
-            dm.setPassword(env.getProperty("POSTGRES_PASSWORD", "postgresql"));
+            dm.setUsername(env.getProperty("POSTGRES_USER", "postgres"));
+            dm.setPassword(env.getProperty("POSTGRES_PASSWORD", "postgres"));
 
             jdbc = new JdbcTemplate(dm, false);
 
@@ -109,22 +109,23 @@ public class MemberDAO {
                 String memberId = map.get("memberId");
                 String gender = map.get("gender");
                 String memberFirstName = map.get("memberFirstName");
-                String memberSecondName = map.get("memberSecondName");
+                String memberLastName = map.get("memberLastName");
                 int age = Integer.parseInt(map.get("age"));
                 String profession = map.get("profession");
-                members.add(new Member(memberId, gender.charAt(0), memberFirstName, memberSecondName, age, profession));
+                members.add(new Member(memberId, gender.charAt(0), memberFirstName, memberLastName, age, profession));
             }
 
-            jdbc.batchUpdate("insert into member (memberId, gender, memberFirstName, memberSecondName, age, profession) values (?,?,?,?,?,?)",
+            jdbc.batchUpdate("insert into member (memberId, gender, memberFirstName, memberLastName, age, profession) values (?,?,?,?,?,?)",
                     new BatchPreparedStatementSetter() {
                         @Override
                         public void setValues(PreparedStatement ps, int i) throws SQLException {
-                            ps.setString(1, members.get(i).getMemberId());
-                            ps.setString(2, String.valueOf(members.get(i).getGender()));
-                            ps.setString(3, members.get(i).getMemberFirstName());
-                            ps.setString(4, members.get(i).getMemberLastName());
-                            ps.setInt(5, members.get(i).getAge());
-                            ps.setString(6, members.get(i).getProfession());
+                            Member member = members.get(i);
+                            ps.setString(1, member.getMemberId());
+                            ps.setString(2, String.valueOf(member.getGender()));
+                            ps.setString(3, member.getMemberFirstName());
+                            ps.setString(4, member.getMemberLastName());
+                            ps.setInt(5, member.getAge());
+                            ps.setString(6, member.getProfession());
                         }
 
                         @Override

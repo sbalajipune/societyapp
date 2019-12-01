@@ -55,6 +55,7 @@ public class MemberDAO {
             jdbc = new JdbcTemplate(dm, false);
 
             createTables();
+
         } catch (Exception e) {
             LOG.error("Failed to connect to database", e);
         }
@@ -75,17 +76,18 @@ public class MemberDAO {
 
     private void createTables() {
         try {
+            LOG.debug("Creating table -> member");
             // create table
             jdbc.execute("CREATE TABLE member (" +
-                    "id serial NOT NULL, " +
+                    "id SERIAL NOT NULL, " +
                     "memberId character varying(15) NOT NULL, " +
                     "gender character varying(1), " +
                     "memberFirstName character varying(20), " +
                     "memberLastName character varying(20)," +
-                    "age int varying(3), " +
+                    "age int, " +
                     "profession character varying(256), " +
                     "CONSTRAINT memberId_pk PRIMARY KEY (memberId));");
-
+            LOG.debug("Table created successfully!");
         } catch (Exception ex) {
             LOG.debug("Failed to create member table, it might already exist!");
             LOG.debug(ex.getMessage());

@@ -159,31 +159,31 @@ public class MemberDAO {
 
     public List<Member> getMembers() {
         return jdbc.query(
-                "select memberId, gender, memberFirstName, memberSecondName, age, profession from member ORDER by memberId DESC LIMIT 100",
+                "select memberId, gender, memberFirstName, memberLastName, age, profession from member ORDER by memberId DESC LIMIT 100",
                 (rs, i) -> new Member(rs.getString("memberId"),
                         rs.getString("gender").charAt(0),
                         rs.getString("memberFirstName"),
-                        rs.getString("memberSecondName"),
+                        rs.getString("memberLastName"),
                         rs.getInt("age"),
                         rs.getString("profession")));
     }
 
     public List<Member> getMembersByApartmentId(String apartmentId) {
         return jdbc.query(
-                "select memberId, gender, memberFirstName, memberSecondName, age, profession from member where memberId LIKE " + apartmentId + " ORDER by memberId DESC LIMIT 100",
+                "select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId LIKE " + apartmentId + " ORDER by memberId DESC LIMIT 100",
                 (rs, i) -> new Member(rs.getString("memberId"),
                         rs.getString("gender").charAt(0),
                         rs.getString("memberFirstName"),
-                        rs.getString("memberSecondName"),
+                        rs.getString("memberLastName"),
                         rs.getInt("age"),
                         rs.getString("profession")));
     }
 
     public Member getMemberById(String memberId) {
-        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberSecondName, age, profession from member where memberId = " + memberId, Member.class);
+        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId = " + memberId, Member.class);
     }
 
     public Member getMemberByName(String memberFirstName, String memberLastName) {
-        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberSecondName, age, profession from member where memberFirstName = " + memberFirstName + " memberLastName = " + memberLastName, Member.class);
+        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberFirstName = " + memberFirstName + " AND memberLastName = " + memberLastName, Member.class);
     }
 }

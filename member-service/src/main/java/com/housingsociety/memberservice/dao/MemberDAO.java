@@ -76,7 +76,7 @@ public class MemberDAO {
 
     private void createTables() {
         try {
-            LOG.debug("Creating table -> member");
+            LOG.info("Creating table -> member");
             // create table
             jdbc.execute("CREATE TABLE member (" +
                     "id SERIAL NOT NULL, " +
@@ -87,10 +87,10 @@ public class MemberDAO {
                     "age int, " +
                     "profession character varying(256), " +
                     "CONSTRAINT memberId_pk PRIMARY KEY (memberId));");
-            LOG.debug("Table created successfully!");
+            LOG.info("Table created successfully!");
         } catch (Exception ex) {
-            LOG.debug("Failed to create member table, it might already exist!");
-            LOG.debug(ex.getMessage());
+            LOG.info("Failed to create member table, it might already exist!");
+            LOG.info(ex.getMessage());
         }
     }
 
@@ -112,6 +112,7 @@ public class MemberDAO {
                 String memberLastName = map.get("memberLastName");
                 int age = Integer.parseInt(map.get("age"));
                 String profession = map.get("profession");
+                LOG.info("memberId = " + memberId + " gender = " + gender + " memberFirstName " + memberFirstName + " memberLastName = " + memberLastName + " age = " + age + " profession = " + profession);
                 members.add(new Member(memberId, gender.charAt(0), memberFirstName, memberLastName, age, profession));
             }
 
@@ -135,7 +136,7 @@ public class MemberDAO {
                     });
             LOG.info("{} airports data imported", members.size());
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             LOG.error("Failed to parse members data from {}", CLASSPATH_URL_PREFIX + DATA_FILENAME);
             ex.printStackTrace();
         }

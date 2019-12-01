@@ -172,4 +172,12 @@ public class MemberDAO {
                         rs.getInt("age"),
                         rs.getString("profession")));
     }
+
+    public Member getMemberById(String memberId) {
+        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberSecondName, age, profession from member where memberId = " + memberId, Member.class);
+    }
+
+    public Member getMemberByName(String memberFirstName, String memberLastName) {
+        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberSecondName, age, profession from member where memberFirstName = " + memberFirstName + " memberLastName = " + memberLastName, Member.class);
+    }
 }

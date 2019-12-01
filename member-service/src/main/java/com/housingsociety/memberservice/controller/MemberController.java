@@ -28,23 +28,23 @@ public class MemberController {
         memberDAO = new MemberDAO();
     }
 
+    @RequestMapping("/")
     public List<Member> getMemberDetails()
     {
-        List<Member> members = new ArrayList<Member>();
-        members.add(getTestMember());
+        List<Member> members = memberDAO.getMembers();
         return members;
     }
 
     @RequestMapping("/member/{memberId}")
-    public Member getMemberDetailsById(@PathVariable("memberId") String apartmentId)
+    public Member getMemberDetailsById(@PathVariable("memberId") String memberId)
     {
-        return getTestMember();
+        return memberDAO.getMemberById(memberId);
     }
 
     @RequestMapping("/{memberFirstName}/{memberLastName}")
     public Member getMemberDetailsByName(@PathVariable("memberFirstName") String memberFirstName, @PathVariable("memberLastName") String memberLastName)
     {
-        return getTestMember();
+        return memberDAO.getMemberByName(memberFirstName, memberLastName);
     }
 
     @RequestMapping("/apartment/{apartmentId}")
@@ -53,9 +53,11 @@ public class MemberController {
         return memberDAO.getMembersByApartmentId(apartmentId);
     }
 
+    /*
     private Member getTestMember()
     {
         Member member = new Member("B-1002-1", 'M', "Balaji", "Londhe",35, "Engineer");
         return member;
     }
+    */
 }

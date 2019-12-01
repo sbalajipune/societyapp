@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -94,7 +95,7 @@ public class MemberDAO {
         }
     }
 
-    private void loadMembers() {
+    public void loadMembers() {
         LOG.info("Importing members data");
 
         try {
@@ -144,7 +145,8 @@ public class MemberDAO {
 
     private String getJsonContent(String fileName) throws IOException {
         StringBuilder json = new StringBuilder("");
-        InputStream is = resourceLoader.getResource(CLASSPATH_URL_PREFIX + fileName).getInputStream();
+        Resource resource = resourceLoader.getResource(CLASSPATH_URL_PREFIX + fileName);
+        InputStream is = resource.getInputStream();
         Scanner scanner = new Scanner(is);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

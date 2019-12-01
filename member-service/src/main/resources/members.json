@@ -4,7 +4,7 @@
     "gender": "M",
     "memberFirstName": "Balaji",
     "memberLastName": "Londhe",
-    "age": 35,
+    "age": "35",
     "profession": "Engineer"
   },
   {
@@ -12,7 +12,7 @@
     "gender": "F",
     "memberFirstName": "Priya",
     "memberLastName": "Londhe",
-    "age": 34,
+    "age": "34",
     "profession": "HomeMaker"
   },
   {
@@ -20,7 +20,7 @@
     "gender": "M",
     "memberFirstName": "Arnav",
     "memberLastName": "Londhe",
-    "age": 6,
+    "age": "6",
     "profession": "Student"
   }
 ]

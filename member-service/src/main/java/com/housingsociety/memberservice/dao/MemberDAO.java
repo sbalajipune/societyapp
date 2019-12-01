@@ -32,7 +32,7 @@ public class MemberDAO {
     private static final Logger LOG = LoggerFactory.getLogger(MemberDAO.class);
     private static final String DATA_FILENAME = "members.json";
 
-    private JdbcTemplate jdbc;
+    private static JdbcTemplate jdbc;
 
     @Autowired
     private Environment env;
@@ -135,7 +135,7 @@ public class MemberDAO {
                             return members.size();
                         }
                     });
-            LOG.info("{} airports data imported", members.size());
+            LOG.info("{} members data imported", members.size());
 
         } catch (Exception ex) {
             LOG.error("Failed to parse members data from {}", CLASSPATH_URL_PREFIX + DATA_FILENAME);
@@ -170,7 +170,7 @@ public class MemberDAO {
 
     public List<Member> getMembersByApartmentId(String apartmentId) {
         return jdbc.query(
-                "select memberId, gender, memberFirstName, memberSecondName, age, profession from member where apartmentId = " + apartmentId + " ORDER by memberId DESC LIMIT 100",
+                "select memberId, gender, memberFirstName, memberSecondName, age, profession from member where memberId LIKE " + apartmentId + " ORDER by memberId DESC LIMIT 100",
                 (rs, i) -> new Member(rs.getString("memberId"),
                         rs.getString("gender").charAt(0),
                         rs.getString("memberFirstName"),

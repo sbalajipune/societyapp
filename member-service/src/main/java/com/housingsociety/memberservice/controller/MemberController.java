@@ -1,5 +1,6 @@
 package com.housingsociety.memberservice.controller;
 
+import com.housingsociety.memberservice.dao.MemberDAO;
 import com.housingsociety.memberservice.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.Mapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,6 +20,13 @@ import java.util.List;
 public class MemberController {
     @Autowired
     private RestTemplate restTemplate;
+
+    private MemberDAO memberDAO;
+
+    @PostConstruct
+    public void init() {
+        memberDAO = new MemberDAO();
+    }
 
     public List<Member> getMemberDetails()
     {
@@ -39,10 +48,11 @@ public class MemberController {
     }
 
     @RequestMapping("/apartment/{apartmentId}")
-    public Member getMemberDetailsByName(@PathVariable("apartmentId") String apartmentId)
+    public List<Member> getMemberDetailsByName(@PathVariable("apartmentId") String apartmentId)
     {
-        return getTestMember();
+        return memberDAO.getMembersByApartmentId(apartmentId);
     }
+
     private Member getTestMember()
     {
         Member member = new Member("B-1002-1", 'M', "Balaji", "Londhe",35, "Engineer");

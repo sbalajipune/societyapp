@@ -1,0 +1,26 @@
+[
+  {
+    "memberId": "B-1002-1",
+    "gender": "M",
+    "memberFirstName": "Balaji",
+    "memberSecondName": "Londhe",
+    "age": 35,
+    "profession": "Engineer"
+  },
+  {
+    "memberId": "B-1002-2",
+    "gender": "F",
+    "memberFirstName": "Priya",
+    "memberSecondName": "Londhe",
+    "age": 34,
+    "profession": "HomeMaker"
+  },
+  {
+    "memberId": "B-1002-3",
+    "gender": "M",
+    "memberFirstName": "Arnav",
+    "memberSecondName": "Londhe",
+    "age": 6,
+    "profession": "Student"
+  }
+]

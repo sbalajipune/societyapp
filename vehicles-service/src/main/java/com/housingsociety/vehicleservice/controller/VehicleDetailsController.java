@@ -4,6 +4,8 @@ import com.housingsociety.vehicleservice.dao.VehicleDAO;
 import com.housingsociety.vehicleservice.model.Member;
 import com.housingsociety.vehicleservice.model.Vehicle;
 import com.housingsociety.vehicleservice.model.VehicleDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
@@ -27,16 +29,19 @@ public class VehicleDetailsController {
     private String remoteURL;
     private VehicleDAO vehicleDAO;
 
+    private static final Logger LOG = LoggerFactory.getLogger(VehicleDetailsController.class);
+
     @PostConstruct
     public void init() {
         remoteURL = "http://" + env.getProperty("member-service", "member-service") + ":8080/";
         vehicleDAO = new VehicleDAO();
     }
 
-    @RequestMapping("/vehicle/{registrationId}")
+    @RequestMapping("/registrationId/{registrationId}")
     public VehicleDetails getVehicleDetailsByRegistrationId(@PathVariable("registrationId") String registrationId)
     {
         Vehicle vehicle = vehicleDAO.getVehicleByRegistrationId(registrationId);
+        LOG.info("Invoking member-service");
         Member member = restTemplate.getForObject(remoteURL + "members/member/" + vehicle.getOwnerId(),  Member.class);
         VehicleDetails vehicleDetails = new VehicleDetails(vehicle.getRegistrationId(), member, vehicle.getParkingId(), vehicle.getModel(), vehicle.getWheelsType());
         return vehicleDetails;

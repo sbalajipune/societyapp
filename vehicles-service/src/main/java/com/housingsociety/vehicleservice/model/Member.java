@@ -10,6 +10,10 @@ public class Member {
     private int age;
     private String profession;
 
+    public Member(){
+
+    }
+
     public Member(String memberId, char gender, String memberFirstName, String memberLastName, int age, String profession) {
         this.memberId = memberId;
         this.gender = gender;

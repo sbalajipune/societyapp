@@ -31,7 +31,7 @@ public class VehicleController {
         return vehicles;
     }
 
-    @RequestMapping("/vehicle/{registrationId}")
+    @RequestMapping("/registrationId/{registrationId}")
     public Vehicle getVehicleDetailsByRegistrationId(@PathVariable("registrationId") String registrationId)
     {
         return vehicleDAO.getVehicleByRegistrationId(registrationId);
@@ -46,7 +46,7 @@ public class VehicleController {
     @RequestMapping("/owner/{ownerId}")
     public List<Vehicle> getVehiclesByOwnerId(@PathVariable("ownerId") String ownerId)
     {
-        return vehicleDAO.getVehiclesByParkingId(ownerId);
+        return vehicleDAO.getVehiclesByOwnerId(ownerId);
     }
 
     /*

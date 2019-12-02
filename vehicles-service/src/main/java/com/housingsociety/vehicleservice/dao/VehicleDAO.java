@@ -43,7 +43,7 @@ public class VehicleDAO {
     @PostConstruct
     protected void init() {
         try {
-            String dbName = env.getProperty("POSTGRES_DB", "memberdb");
+            String dbName = env.getProperty("POSTGRES_DB", "societydb");
             String dbHost = env.getProperty("POSTGRES_HOST", "postgresql");
 
             LOG.info("Connecting to database {}:5432/{}", dbHost, dbName);
@@ -86,7 +86,7 @@ public class VehicleDAO {
                     "parkingId character varying(10), " +
                     "model character varying(20)," +
                     "wheelsType character varying(15), " +
-                    "CONSTRAINT memberId_pk PRIMARY KEY (registrationId));");
+                    "CONSTRAINT vehicleId_pk PRIMARY KEY (registrationId));");
             LOG.info("Table created successfully!");
         } catch (Exception ex) {
             LOG.info("Failed to create vehicle table, it might already exist!");
@@ -102,7 +102,7 @@ public class VehicleDAO {
             String json = getJsonContent(DATA_FILENAME);
             JsonParser parser = JsonParserFactory.getJsonParser();
             List<Object> jsonObjects = parser.parseList(json);
-            List<Vehicle> members = new LinkedList<Vehicle>();
+            List<Vehicle> vehicles = new LinkedList<Vehicle>();
             for (Object o : jsonObjects) {
                 Map<String, String> map = (Map<String, String>) o;
 
@@ -112,14 +112,14 @@ public class VehicleDAO {
                 String model = map.get("model");
                 String wheelsType = map.get("wheelsType");
                 LOG.info("registrationId = " + registrationId + " ownerId = " + ownerId + " parkingId " + parkingId + " model = " + model + " wheelsType = " + wheelsType);
-                members.add(new Vehicle(registrationId, ownerId, parkingId, model, wheelsType));
+                vehicles.add(new Vehicle(registrationId, ownerId, parkingId, model, wheelsType));
             }
 
-            jdbc.batchUpdate("insert into member (ownerId, ownerId, parkingId, model, wheelsType) values (?,?,?,?,?)",
+            jdbc.batchUpdate("insert into vehicle (ownerId, ownerId, parkingId, model, wheelsType) values (?,?,?,?,?)",
                     new BatchPreparedStatementSetter() {
                         @Override
                         public void setValues(PreparedStatement ps, int i) throws SQLException {
-                            Vehicle vehicle = members.get(i);
+                            Vehicle vehicle = vehicles.get(i);
                             ps.setString(1, vehicle.getRegistrationId());
                             ps.setString(2, vehicle.getOwnerId());
                             ps.setString(3, vehicle.getParkingId());
@@ -129,10 +129,10 @@ public class VehicleDAO {
 
                         @Override
                         public int getBatchSize() {
-                            return members.size();
+                            return vehicles.size();
                         }
                     });
-            LOG.info("{} vehicles data imported", members.size());
+            LOG.info("{} vehicles data imported", vehicles.size());
 
         } catch (Exception ex) {
             LOG.error("Failed to parse vehicles data from {}", CLASSPATH_URL_PREFIX + DATA_FILENAME);

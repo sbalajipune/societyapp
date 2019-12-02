@@ -115,7 +115,7 @@ public class VehicleDAO {
                 vehicles.add(new Vehicle(registrationId, ownerId, parkingId, model, wheelsType));
             }
 
-            jdbc.batchUpdate("insert into vehicle (ownerId, ownerId, parkingId, model, wheelsType) values (?,?,?,?,?)",
+            jdbc.batchUpdate("insert into vehicle (registrationId, ownerId, parkingId, model, wheelsType) values (?,?,?,?,?)",
                     new BatchPreparedStatementSetter() {
                         @Override
                         public void setValues(PreparedStatement ps, int i) throws SQLException {

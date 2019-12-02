@@ -180,10 +180,12 @@ public class MemberDAO {
     }
 
     public Member getMemberById(String memberId) {
-        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId = '" + memberId + "'", Member.class);
+        String sql = "select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId = ?";
+        return (Member) jdbc.queryForObject(sql, new MemberRowMapper(), memberId, Member.class);
     }
 
     public Member getMemberByName(String memberFirstName, String memberLastName) {
-        return jdbc.queryForObject("select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberFirstName = '" + memberFirstName + "' AND memberLastName = '" + memberLastName + "'", Member.class);
+        String sql = "select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberFirstName = ? AND memberLastName = ?";
+        return (Member) jdbc.queryForObject(sql, new MemberRowMapper(), memberFirstName, memberLastName, Member.class);
     }
 }

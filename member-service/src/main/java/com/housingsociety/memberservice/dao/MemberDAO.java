@@ -181,7 +181,7 @@ public class MemberDAO {
 
     public Member getMemberById(String memberId) {
         String sql = "select memberId, gender, memberFirstName, memberLastName, age, profession from member where memberId = ?";
-        return (Member) jdbc.queryForObject(sql, new MemberRowMapper(), memberId;
+        return (Member) jdbc.queryForObject(sql, new MemberRowMapper(), memberId);
     }
 
     public Member getMemberByName(String memberFirstName, String memberLastName) {

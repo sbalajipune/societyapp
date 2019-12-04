@@ -9,6 +9,9 @@ public class Vehicle {
     private String model;
     private String wheelsType;
 
+    public Vehicle(){
+
+    }
     public Vehicle(String registrationId, String ownerId, String parkingId, String model, String wheelsType) {
         this.registrationId = registrationId;
         this.ownerId = ownerId;

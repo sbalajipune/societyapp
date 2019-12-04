@@ -7,6 +7,9 @@ public class VehicleDetails {
     private String model;
     private String wheelsType;
 
+    public VehicleDetails(){
+
+    }
     public VehicleDetails(String registrationId, Member member, String parkingId, String model, String wheelsType) {
         this.registrationId = registrationId;
         this.member = member;

@@ -115,7 +115,7 @@ public class ParkingDAO {
                 parkings.add(new Parking(parkingId, apartmentId, ownerId, level, vehicles));
             }
 
-            jdbc.batchUpdate("insert into parking (parkingId, apartmentId, lvl, vehicles) values (?,?,?,?)",
+            jdbc.batchUpdate("insert into parking (parkingId, apartmentId, ownerId, lvl, vehicles) values (?,?,?,?)",
                     new BatchPreparedStatementSetter() {
                         @Override
                         public void setValues(PreparedStatement ps, int i) throws SQLException {

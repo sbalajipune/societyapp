@@ -83,6 +83,7 @@ public class ParkingDAO {
                     "id SERIAL NOT NULL, " +
                     "parkingId character varying(15) NOT NULL, " +
                     "apartmentId character varying(15), " +
+                    "ownerId character varying(15), " +
                     "lvl int," +
                     "vehicles character varying(50), " +
                     "CONSTRAINT parkingId_pk PRIMARY KEY (parkingId));");
@@ -107,10 +108,11 @@ public class ParkingDAO {
 
                 String parkingId = map.get("parkingId");
                 String apartmentId = map.get("apartmentId");
+                String ownerId = map.get("ownerId");
                 int level = Integer.parseInt(map.get("level"));
                 String vehicles = map.get("vehicles");
                 LOG.info("parkingId = " + parkingId + " apartmentId = " + apartmentId + " level " + level + " vehicles = " + vehicles);
-                parkings.add(new Parking(parkingId, apartmentId, level, vehicles));
+                parkings.add(new Parking(parkingId, apartmentId, ownerId, level, vehicles));
             }
 
             jdbc.batchUpdate("insert into parking (parkingId, apartmentId, lvl, vehicles) values (?,?,?,?)",
@@ -120,8 +122,9 @@ public class ParkingDAO {
                             Parking parking = parkings.get(i);
                             ps.setString(1, parking.getParkingId());
                             ps.setString(2, parking.getApartmentId());
-                            ps.setInt(3, parking.getLevel());
-                            ps.setString(4, parking.getVehicles());
+                            ps.setString(3, parking.getOwnerId());
+                            ps.setInt(4, parking.getLevel());
+                            ps.setString(5, parking.getVehicles());
                         }
 
                         @Override
@@ -153,25 +156,36 @@ public class ParkingDAO {
 
     public List<Parking> getParkingDetails() {
         return jdbc.query(
-                "select parkingId, apartmentId, lvl, vehicles from parking ORDER by parkingId DESC LIMIT 100",
+                "select parkingId, apartmentId, ownerId, lvl, vehicles from parking ORDER by parkingId DESC LIMIT 100",
                 (rs, i) -> new Parking(rs.getString("parkingId"),
                         rs.getString("apartmentId"),
+                        rs.getString("ownerId"),
                         rs.getInt("lvl"),
                         rs.getString("vehicles")));
     }
 
     public List<Parking> getParkingDetailsByApartmentId(String apartmentId) {
         return jdbc.query(
-                "select parkingId, apartmentId, lvl, vehicles from parking where apartmentId = '" + apartmentId + "' ORDER by parkingId DESC LIMIT 100",
+                "select parkingId, apartmentId, ownerId, lvl, vehicles from parking where apartmentId = '" + apartmentId + "' ORDER by parkingId DESC LIMIT 100",
                 (rs, i) -> new Parking(rs.getString("parkingId"),
                         rs.getString("apartmentId"),
+                        rs.getString("ownerId"),
                         rs.getInt("lvl"),
                         rs.getString("vehicles")));
     }
 
     public Parking getParkingDetailsByParkingId(String parkingId) {
-        String sql = "select parkingId, apartmentId, lvl, vehicles from parking where parkingId = ?";
+        String sql = "select parkingId, apartmentId, ownerId, lvl, vehicles from parking where parkingId = ?";
         return (Parking) jdbc.queryForObject(sql, new ParkingRowMapper(), parkingId);
     }
 
+    public List<Parking> getParkingDetailsByOwnerId(String ownerId) {
+        return jdbc.query(
+                "select parkingId, apartmentId, ownerId, lvl, vehicles from parking where apartmentId = '" + ownerId + "' ORDER by parkingId DESC LIMIT 100",
+                (rs, i) -> new Parking(rs.getString("parkingId"),
+                        rs.getString("apartmentId"),
+                        rs.getString("ownerId"),
+                        rs.getInt("lvl"),
+                        rs.getString("vehicles")));
+    }
 }

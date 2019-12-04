@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Parking {
     private String parkingId;
     private String apartmentId;
+    private String ownerId;
     private int level;
     private String vehicles;
 
@@ -12,9 +13,10 @@ public class Parking {
 
     }
 
-    public Parking(String parkingId, String apartmentId, int level, String vehicles) {
+    public Parking(String parkingId, String apartmentId, String ownerId, int level, String vehicles) {
         this.parkingId = parkingId;
         this.apartmentId = apartmentId;
+        this.ownerId = ownerId;
         this.level = level;
         this.vehicles = vehicles;
     }
@@ -31,8 +33,16 @@ public class Parking {
         return apartmentId;
     }
 
+    public String getOwnerId() {
+        return ownerId;
+    }
+
     public void setApartmentId(String apartmentId) {
         this.apartmentId = apartmentId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
     public int getLevel() {

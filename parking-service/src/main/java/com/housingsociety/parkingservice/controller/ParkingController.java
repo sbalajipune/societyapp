@@ -38,10 +38,9 @@ public class ParkingController {
     }
 
     @RequestMapping("/owner/{ownerId}")
-    public List<Parking> getParkingDetailsByMemberId(@PathVariable("ownerId") String ownerId)
+    public List<Parking> getParkingDetailsByOwnerId(@PathVariable("ownerId") String ownerId)
     {
-        //return parkingDAO.getParkingDetailsByOwnerId(ownerId);
-        return null;
+        return parkingDAO.getParkingDetailsByOwnerId(ownerId);
     }
 
     @RequestMapping("/apartment/{apartmentId}")
@@ -49,5 +48,4 @@ public class ParkingController {
     {
         return parkingDAO.getParkingDetailsByApartmentId(apartmentId);
     }
-
 }

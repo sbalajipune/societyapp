@@ -1,20 +1,25 @@
 package com.housingsociety.parkingservice.model;
 
+import java.util.List;
+
 public class ParkingDetails {
     private String parkingId;
+    private String apartmentId;
     private Member owner;
     private int level;
-    private VehicleDetails vehicleDetails;
+    private List<Vehicle> vehicles;
 
-    public ParkingDetails(){
+    ParkingDetails()
+    {
 
     }
 
-    public ParkingDetails(String parkingId, Member owner, int level, VehicleDetails vehicleDetails) {
+    public ParkingDetails(String parkingId, String apartmentId, Member owner, int level, List<Vehicle> vehicles) {
         this.parkingId = parkingId;
+        this.apartmentId = apartmentId;
         this.owner = owner;
         this.level = level;
-        this.vehicleDetails = vehicleDetails;
+        this.vehicles = vehicles;
     }
 
     public String getParkingId() {
@@ -23,6 +28,14 @@ public class ParkingDetails {
 
     public void setParkingId(String parkingId) {
         this.parkingId = parkingId;
+    }
+
+    public String getApartmentId() {
+        return apartmentId;
+    }
+
+    public void setApartmentId(String apartmentId) {
+        this.apartmentId = apartmentId;
     }
 
     public Member getOwner() {
@@ -41,11 +54,11 @@ public class ParkingDetails {
         this.level = level;
     }
 
-    public VehicleDetails getVehicleDetails() {
-        return vehicleDetails;
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setVehicleDetails(VehicleDetails vehicleDetails) {
-        this.vehicleDetails = vehicleDetails;
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 }

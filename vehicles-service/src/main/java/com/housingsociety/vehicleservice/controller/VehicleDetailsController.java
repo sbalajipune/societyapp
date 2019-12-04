@@ -46,4 +46,6 @@ public class VehicleDetailsController {
         VehicleDetails vehicleDetails = new VehicleDetails(vehicle.getRegistrationId(), member, vehicle.getParkingId(), vehicle.getModel(), vehicle.getWheelsType());
         return vehicleDetails;
     }
+
+
 }

@@ -11,6 +11,7 @@ public class ParkingRowMapper implements RowMapper {
         Parking parking = new Parking(
                 rs.getString("parkingId"),
                 rs.getString("apartmentId"),
+                rs.getString("ownerId"),
                 rs.getInt("lvl"),
                 rs.getString("vehicles")
         );

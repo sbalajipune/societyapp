@@ -37,7 +37,7 @@ public class ParkingDetailsController {
         parkingDAO = new ParkingDAO();
     }
 
-    @RequestMapping("/parking/{parkingId}")
+    @RequestMapping("/parkingId/{parkingId}")
     public ParkingDetails getParkingDetailsByParkingId(@PathVariable("parkingId") String parkingId)
     {
         Parking parking = parkingDAO.getParkingDetailsByParkingId(parkingId);
@@ -53,14 +53,14 @@ public class ParkingDetailsController {
         return parkingDetails;
     }
 
-    @RequestMapping("/owner/{ownerId}")
+    @RequestMapping("/ownerId/{ownerId}")
     public List<ParkingDetails> getParkingDetailsByOwnerId(@PathVariable("ownerId") String ownerId)
     {
         List<Parking> parkings = parkingDAO.getParkingDetailsByOwnerId(ownerId);
         return constructParkingDetailsList(parkings);
     }
 
-    @RequestMapping("/apartment/{apartmentId}")
+    @RequestMapping("/apartmentId/{apartmentId}")
     public List<ParkingDetails> getParkingDetailsByApartmentId(@PathVariable("apartmentId") String apartmentId)
     {
         List<Parking> parkings = parkingDAO.getParkingDetailsByApartmentId(apartmentId);

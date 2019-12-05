@@ -37,13 +37,13 @@ public class VehicleController {
         return vehicleDAO.getVehicleByRegistrationId(registrationId);
     }
 
-    @RequestMapping("/parking/{parkingId}")
+    @RequestMapping("/parkingId/{parkingId}")
     public List<Vehicle> getVehiclesByParkingId(@PathVariable("parkingId") String parkingId)
     {
         return vehicleDAO.getVehiclesByParkingId(parkingId);
     }
 
-    @RequestMapping("/owner/{ownerId}")
+    @RequestMapping("/ownerId/{ownerId}")
     public List<Vehicle> getVehiclesByOwnerId(@PathVariable("ownerId") String ownerId)
     {
         return vehicleDAO.getVehiclesByOwnerId(ownerId);

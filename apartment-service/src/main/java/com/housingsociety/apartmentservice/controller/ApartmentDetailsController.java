@@ -47,7 +47,7 @@ public class ApartmentDetailsController {
         return constructApartmentDetails(apartment);
     }
 
-    @RequestMapping("/owner/{ownerId}")
+    @RequestMapping("/ownerId/{ownerId}")
     public List<ApartmentDetails> getApartmentDetailsByOwnerId(@PathVariable("ownerId") String ownerId)
     {
         List<Apartment> apartments = apartmentDAO.getApartmentsByOwnerId(ownerId);

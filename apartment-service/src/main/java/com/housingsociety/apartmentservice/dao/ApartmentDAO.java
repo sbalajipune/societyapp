@@ -170,7 +170,7 @@ public class ApartmentDAO {
 
     public List<Apartment> getApartmentsByOwnerId(String ownerId) {
         return jdbc.query(
-                "select partmentId, apartmentType, ownerId, parkingId, membersCnt, memberIds from apartment where ownerId LIKE '" + ownerId + "%' ORDER by apartmentId DESC LIMIT 100",
+                "select apartmentId, apartmentType, ownerId, parkingId, membersCnt, memberIds from apartment where ownerId LIKE '" + ownerId + "%' ORDER by apartmentId DESC LIMIT 100",
                 (rs, i) -> new Apartment(rs.getString("apartmentId"),
                         rs.getString("apartmentType"),
                         rs.getString("ownerId"),
@@ -180,7 +180,7 @@ public class ApartmentDAO {
     }
 
     public Apartment getApartmentById(String apartmentId) {
-        String sql = "select partmentId, apartmentType, ownerId, parkingId, membersCnt, memberIds from apartment where apartmentId = ?";
+        String sql = "select apartmentId, apartmentType, ownerId, parkingId, membersCnt, memberIds from apartment where apartmentId = ?";
         return (Apartment) jdbc.queryForObject(sql, new ApartmentRowMapper(), apartmentId);
     }
 

@@ -31,19 +31,19 @@ public class ParkingController {
         return parkings;
     }
 
-    @RequestMapping("/parking/{parkingId}")
+    @RequestMapping("/parkingId/{parkingId}")
     public Parking getParkingDetailsByParkingId(@PathVariable("parkingId") String parkingId)
     {
         return parkingDAO.getParkingDetailsByParkingId(parkingId);
     }
 
-    @RequestMapping("/owner/{ownerId}")
+    @RequestMapping("/ownerId/{ownerId}")
     public List<Parking> getParkingDetailsByOwnerId(@PathVariable("ownerId") String ownerId)
     {
         return parkingDAO.getParkingDetailsByOwnerId(ownerId);
     }
 
-    @RequestMapping("/apartment/{apartmentId}")
+    @RequestMapping("/apartmentId/{apartmentId}")
     public List<Parking> getParkingDetailsByApartmentId(@PathVariable("apartmentId") String apartmentId)
     {
         return parkingDAO.getParkingDetailsByApartmentId(apartmentId);

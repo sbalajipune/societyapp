@@ -1,6 +1,8 @@
 package com.housingsociety.apartmentservice.model;
 
-public class Parking {
+import java.io.Serializable;
+
+public class Parking implements Serializable {
     private String parkingId;
     private String apartmentId;
     private String ownerId;

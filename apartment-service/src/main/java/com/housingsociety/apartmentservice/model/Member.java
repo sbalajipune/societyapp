@@ -1,13 +1,26 @@
 package com.housingsociety.apartmentservice.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Member {
+public class Member implements Serializable {
     private String memberId;
     private char gender;
     private String memberName;
     private int age;
     private String profession;
+
+    public Member(){
+
+    }
+
+    public Member(String memberId, char gender, String memberName, int age, String profession) {
+        this.memberId = memberId;
+        this.gender = gender;
+        this.memberName = memberName;
+        this.age = age;
+        this.profession = profession;
+    }
 
     public String getMemberId() {
         return memberId;

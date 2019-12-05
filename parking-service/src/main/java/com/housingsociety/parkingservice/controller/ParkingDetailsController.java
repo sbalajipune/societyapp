@@ -42,7 +42,7 @@ public class ParkingDetailsController {
     {
         Parking parking = parkingDAO.getParkingDetailsByParkingId(parkingId);
         LOG.info("Invoking member-service");
-        Member member = restTemplate.getForObject(memberServiceURL + "members/member/" + parking.getOwnerId(),  Member.class);
+        Member member = restTemplate.getForObject(memberServiceURL + "members/memberId/" + parking.getOwnerId(),  Member.class);
         LOG.info("Invoking vehicle-service");
         List<Vehicle> vehicleList = new ArrayList<Vehicle>();
         for (String registrationId : parking.getVehicles().split(",")) {
@@ -73,7 +73,7 @@ public class ParkingDetailsController {
         for (Parking parking: parkings)
         {
             LOG.info("Invoking member-service");
-            Member member = restTemplate.getForObject(memberServiceURL + "members/member/" + parking.getOwnerId(),  Member.class);
+            Member member = restTemplate.getForObject(memberServiceURL + "members/memberId/" + parking.getOwnerId(),  Member.class);
             LOG.info("Invoking vehicle-service");
             List<Vehicle> vehicleList = new ArrayList<Vehicle>();
             for (String registrationId : parking.getVehicles().split(",")) {

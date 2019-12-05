@@ -61,12 +61,12 @@ public class ApartmentDetailsController {
     private ApartmentDetails constructApartmentDetails(Apartment apartment)
     {
         LOG.info("Invoking parking-service");
-        ParkingDetails parkingDetails = restTemplate.getForObject(parkingServiceURL + "parkingdetails/parking/" + apartment.getParkingId(),  ParkingDetails.class);
+        ParkingDetails parkingDetails = restTemplate.getForObject(parkingServiceURL + "parkingdetails/parkingId/" + apartment.getParkingId(),  ParkingDetails.class);
         LOG.info("Invoking member-service");
         List<Member> memberList = new ArrayList<Member>();
         Member owner = null;
         for (String memberId : apartment.getMemberIds().split(",")) {
-            Member member = restTemplate.getForObject(memberServiceURL + "members/member/" + memberId, Member.class);
+            Member member = restTemplate.getForObject(memberServiceURL + "members/memberId/" + memberId, Member.class);
             memberList.add(member);
             if (memberId.equals(member.getMemberId()))
                 owner = member;

@@ -42,7 +42,7 @@ public class VehicleDetailsController {
     {
         Vehicle vehicle = vehicleDAO.getVehicleByRegistrationId(registrationId);
         LOG.info("Invoking member-service");
-        Member member = restTemplate.getForObject(remoteURL + "members/member/" + vehicle.getOwnerId(),  Member.class);
+        Member member = restTemplate.getForObject(remoteURL + "members/memberId/" + vehicle.getOwnerId(),  Member.class);
         VehicleDetails vehicleDetails = new VehicleDetails(vehicle.getRegistrationId(), member, vehicle.getParkingId(), vehicle.getModel(), vehicle.getWheelsType());
         return vehicleDetails;
     }

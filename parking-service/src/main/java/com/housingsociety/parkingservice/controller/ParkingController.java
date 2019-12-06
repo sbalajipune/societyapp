@@ -3,6 +3,7 @@ package com.housingsociety.parkingservice.controller;
 import com.housingsociety.parkingservice.dao.ParkingDAO;
 import com.housingsociety.parkingservice.model.Parking;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,26 +25,26 @@ public class ParkingController {
         parkingDAO = new ParkingDAO();
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public List<Parking> getParkingDetails()
     {
         List<Parking> parkings = parkingDAO.getParkingDetails();
         return parkings;
     }
 
-    @RequestMapping("/parkingId/{parkingId}")
+    @GetMapping("/parkingId/{parkingId}")
     public Parking getParkingDetailsByParkingId(@PathVariable("parkingId") String parkingId)
     {
         return parkingDAO.getParkingDetailsByParkingId(parkingId);
     }
 
-    @RequestMapping("/ownerId/{ownerId}")
+    @GetMapping("/ownerId/{ownerId}")
     public List<Parking> getParkingDetailsByOwnerId(@PathVariable("ownerId") String ownerId)
     {
         return parkingDAO.getParkingDetailsByOwnerId(ownerId);
     }
 
-    @RequestMapping("/apartmentId/{apartmentId}")
+    @GetMapping("/apartmentId/{apartmentId}")
     public List<Parking> getParkingDetailsByApartmentId(@PathVariable("apartmentId") String apartmentId)
     {
         return parkingDAO.getParkingDetailsByApartmentId(apartmentId);

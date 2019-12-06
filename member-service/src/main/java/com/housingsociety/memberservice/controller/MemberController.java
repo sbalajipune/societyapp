@@ -3,13 +3,11 @@ package com.housingsociety.memberservice.controller;
 import com.housingsociety.memberservice.dao.MemberDAO;
 import com.housingsociety.memberservice.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
+import javax.ws.rs.HttpMethod;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,26 +26,26 @@ public class MemberController {
         memberDAO = new MemberDAO();
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public List<Member> getMemberDetails()
     {
         List<Member> members = memberDAO.getMembers();
         return members;
     }
 
-    @RequestMapping("/memberId/{memberId}")
+    @GetMapping("/memberId/{memberId}")
     public Member getMemberDetailsById(@PathVariable("memberId") String memberId)
     {
         return memberDAO.getMemberById(memberId);
     }
 
-    @RequestMapping("/member/{memberFirstName}/{memberLastName}")
+    @GetMapping("/member/{memberFirstName}/{memberLastName}")
     public Member getMemberDetailsByName(@PathVariable("memberFirstName") String memberFirstName, @PathVariable("memberLastName") String memberLastName)
     {
         return memberDAO.getMemberByName(memberFirstName, memberLastName);
     }
 
-    @RequestMapping("/apartment/{apartmentId}")
+    @GetMapping("/apartment/{apartmentId}")
     public List<Member> getMemberDetailsByName(@PathVariable("apartmentId") String apartmentId)
     {
         return memberDAO.getMembersByApartmentId(apartmentId);

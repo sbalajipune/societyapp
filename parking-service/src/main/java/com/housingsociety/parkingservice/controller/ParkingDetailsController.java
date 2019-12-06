@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class ParkingDetailsController {
         parkingDAO = new ParkingDAO();
     }
 
-    @RequestMapping("/parkingId/{parkingId}")
+    @GetMapping("/parkingId/{parkingId}")
     public ParkingDetails getParkingDetailsByParkingId(@PathVariable("parkingId") String parkingId)
     {
         Parking parking = parkingDAO.getParkingDetailsByParkingId(parkingId);
@@ -53,14 +54,14 @@ public class ParkingDetailsController {
         return parkingDetails;
     }
 
-    @RequestMapping("/ownerId/{ownerId}")
+    @GetMapping("/ownerId/{ownerId}")
     public List<ParkingDetails> getParkingDetailsByOwnerId(@PathVariable("ownerId") String ownerId)
     {
         List<Parking> parkings = parkingDAO.getParkingDetailsByOwnerId(ownerId);
         return constructParkingDetailsList(parkings);
     }
 
-    @RequestMapping("/apartmentId/{apartmentId}")
+    @GetMapping("/apartmentId/{apartmentId}")
     public List<ParkingDetails> getParkingDetailsByApartmentId(@PathVariable("apartmentId") String apartmentId)
     {
         List<Parking> parkings = parkingDAO.getParkingDetailsByApartmentId(apartmentId);

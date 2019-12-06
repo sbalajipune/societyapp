@@ -37,7 +37,7 @@ public class VehicleDetailsController {
         vehicleDAO = new VehicleDAO();
     }
 
-    @RequestMapping("/registrationId/{registrationId}")
+    @GetMapping("/registrationId/{registrationId}")
     public VehicleDetails getVehicleDetailsByRegistrationId(@PathVariable("registrationId") String registrationId)
     {
         Vehicle vehicle = vehicleDAO.getVehicleByRegistrationId(registrationId);

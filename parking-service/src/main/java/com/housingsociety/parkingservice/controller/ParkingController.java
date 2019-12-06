@@ -25,6 +25,12 @@ public class ParkingController {
         parkingDAO = new ParkingDAO();
     }
 
+    @GetMapping("/healthcheck")
+    public String healthcheck()
+    {
+        return "success";
+    }
+    
     @GetMapping("/")
     public List<Parking> getParkingDetails()
     {

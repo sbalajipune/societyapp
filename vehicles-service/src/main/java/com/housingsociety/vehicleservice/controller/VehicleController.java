@@ -25,6 +25,12 @@ public class VehicleController {
         vehicleDAO = new VehicleDAO();
     }
 
+    @GetMapping("/healthcheck")
+    public String healthcheck()
+    {
+        return "success";
+    }
+
     @GetMapping("/")
     public List<Vehicle> getVehicleDetails()
     {

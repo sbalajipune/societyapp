@@ -26,6 +26,12 @@ public class MemberController {
         memberDAO = new MemberDAO();
     }
 
+    @GetMapping("/healthcheck")
+    public String healthcheck()
+    {
+        return "success";
+    }
+
     @GetMapping("/")
     public List<Member> getMemberDetails()
     {

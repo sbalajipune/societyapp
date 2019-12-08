@@ -1,5 +1,5 @@
-#App Functionality
- - return the details of apartments in a society
+# App Functionality
+Society app that returns the details of apartments in a society
    e.g given the apartment id, return 
    1. the details of members in apartment
    2. the details of parking(s)

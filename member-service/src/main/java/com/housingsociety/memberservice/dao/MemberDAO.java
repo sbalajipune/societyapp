@@ -43,7 +43,7 @@ public class MemberDAO {
     @PostConstruct
     protected void init() {
         try {
-            String dbName = env.getProperty("POSTGRES_DB", "memberdb");
+            String dbName = env.getProperty("POSTGRES_DB", "societydb");
             String dbHost = env.getProperty("POSTGRES_HOST", "postgresql");
 
             LOG.info("Connecting to database {}:5432/{}", dbHost, dbName);

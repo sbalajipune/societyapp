@@ -30,7 +30,7 @@ public class ParkingController {
     {
         return "success";
     }
-    
+
     @GetMapping("/")
     public List<Parking> getParkingDetails()
     {

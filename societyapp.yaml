@@ -131,7 +131,7 @@ objects:
           livenessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /members/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -152,7 +152,7 @@ objects:
           readinessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /members/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -321,7 +321,7 @@ objects:
           livenessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /vehicles/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -342,7 +342,7 @@ objects:
           readinessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /vehicles/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -511,7 +511,7 @@ objects:
           livenessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /parkings/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -532,7 +532,7 @@ objects:
           readinessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /parkings/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -701,7 +701,7 @@ objects:
           livenessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /apartments/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15
@@ -722,7 +722,7 @@ objects:
           readinessProbe:
             failureThreshold: 10
             httpGet:
-              path: /healthcheck
+              path: /apartments/healthcheck
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 15

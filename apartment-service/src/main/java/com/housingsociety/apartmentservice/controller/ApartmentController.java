@@ -28,19 +28,19 @@ public class ApartmentController {
         return "success";
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public List<Apartment> getApartmentDetails()
     {
         return apartmentDAO.getApartmentDetails();
     }
 
-    @RequestMapping("/apartmentId/{apartmentId}")
+    @GetMapping("/apartmentId/{apartmentId}")
     public Apartment getApartmentDetailsById(@PathVariable("apartmentId") String apartmentId)
     {
         return apartmentDAO.getApartmentById(apartmentId);
     }
 
-    @RequestMapping("/ownerId/{ownerId}")
+    @GetMapping("/ownerId/{ownerId}")
     public List<Apartment> getApartmentDetails(@PathVariable("ownerId") String ownerId)
     {
         return apartmentDAO.getApartmentsByOwnerId(ownerId);

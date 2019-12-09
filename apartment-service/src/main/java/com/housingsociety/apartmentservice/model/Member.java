@@ -6,18 +6,16 @@ import java.util.Objects;
 public class Member implements Serializable {
     private String memberId;
     private char gender;
-    private String memberName;
+    private String memberFirstName;
+    private String memberLastName;
     private int age;
     private String profession;
 
-    public Member(){
-
-    }
-
-    public Member(String memberId, char gender, String memberName, int age, String profession) {
+    public Member(String memberId, char gender, String memberFirstName, String memberLastName, int age, String profession) {
         this.memberId = memberId;
         this.gender = gender;
-        this.memberName = memberName;
+        this.memberFirstName = memberFirstName;
+        this.memberLastName = memberLastName;
         this.age = age;
         this.profession = profession;
     }
@@ -38,12 +36,20 @@ public class Member implements Serializable {
         this.gender = gender;
     }
 
-    public String getMemberName() {
-        return memberName;
+    public String getMemberFirstName() {
+        return memberFirstName;
     }
 
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
+    public void setMemberFirstName(String memberFirstName) {
+        this.memberFirstName = memberFirstName;
+    }
+
+    public String getMemberLastName() {
+        return memberLastName;
+    }
+
+    public void setMemberLastName(String memberLastName) {
+        this.memberLastName = memberLastName;
     }
 
     public int getAge() {
@@ -70,12 +76,13 @@ public class Member implements Serializable {
         return gender == member.gender &&
                 age == member.age &&
                 memberId.equals(member.memberId) &&
-                Objects.equals(memberName, member.memberName) &&
+                Objects.equals(memberFirstName, member.memberFirstName) &&
+                Objects.equals(memberLastName, member.memberLastName) &&
                 Objects.equals(profession, member.profession);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(memberId, gender, memberName, age, profession);
+        return Objects.hash(memberId, gender, memberFirstName, memberLastName, age, profession);
     }
 }

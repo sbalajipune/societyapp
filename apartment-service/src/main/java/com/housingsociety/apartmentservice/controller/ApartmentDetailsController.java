@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,14 +41,14 @@ public class ApartmentDetailsController {
         apartmentDAO = new ApartmentDAO();
     }
 
-    @RequestMapping("/apartmentId/{apartmentId}")
+    @GetMapping("/apartmentId/{apartmentId}")
     public ApartmentDetails getApartmentDetailsById(@PathVariable("apartmentId") String apartmentId)
     {
         Apartment apartment = apartmentDAO.getApartmentById(apartmentId);
         return constructApartmentDetails(apartment);
     }
 
-    @RequestMapping("/ownerId/{ownerId}")
+    @GetMapping("/ownerId/{ownerId}")
     public List<ApartmentDetails> getApartmentDetailsByOwnerId(@PathVariable("ownerId") String ownerId)
     {
         List<Apartment> apartments = apartmentDAO.getApartmentsByOwnerId(ownerId);

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class VehicleDetails {
     private String registrationId;
-    private Member member;
+    private Member owner;
     private String parkingId;
     private String model;
     private String wheelsType;
@@ -13,9 +13,9 @@ public class VehicleDetails {
 
     }
 
-    public VehicleDetails(String registrationId, Member member, String parkingId, String model, String wheelsType) {
+    public VehicleDetails(String registrationId, Member owner, String parkingId, String model, String wheelsType) {
         this.registrationId = registrationId;
-        this.member = member;
+        this.owner = owner;
         this.parkingId = parkingId;
         this.model = model;
         this.wheelsType = wheelsType;
@@ -29,12 +29,12 @@ public class VehicleDetails {
         this.registrationId = registrationId;
     }
 
-    public Member getMember() {
-        return member;
+    public Member getOwner() {
+        return owner;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setOwner(Member owner) {
+        this.owner = owner;
     }
 
     public String getParkingId() {

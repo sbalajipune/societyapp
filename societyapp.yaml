@@ -28,40 +28,12 @@ objects:
       name: member-app-pipeline
     name: member-app-pipeline
   spec:
+    source:
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfile: |-
-          try {
-             timeout(time: 20, unit: 'MINUTES') {
-                node('maven') {
-                    stage('build') {
-                      openshift.withCluster() {
-                         openshift.withProject() {
-                            def bld = openshift.startBuild('${MEMBER_APP_NAME}')
-                            bld.untilEach {
-                              return it.object().status.phase == "Running"
-                            }
-                            bld.logs('-f')
-                         }  
-                      }
-                    }
-                    stage('deploy') {
-                      openshift.withCluster() {
-                        openshift.withProject() {
-                          def dc = openshift.selector('dc', '${MEMBER_APP_NAME}')
-                          dc.rollout().latest()
-                        }
-                      }
-                    }
-                  }
-             }
-          } catch (err) {
-             echo "in catch block"
-             echo "Caught: ${err}"
-             currentBuild.result = 'FAILURE'
-             throw err
-          }          
-      type: JenkinsPipeline
+        jenkinsfilePath: cicd/pipelines/Jenkinsfile
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -1049,3 +1021,7 @@ parameters:
   name: NAMESPACE
   required: true
   value: openshift
+- name: POSTMAN_TESTS_COLLECTION
+  value: "https://raw.githubusercontent.com/sbalajipune/societyapp/feature/cicd/cicd/member-service/tests/member-service.postman_collection.json"
+- name: POSTMAN_DEV_ENVIRONMENT_CONFIG
+  value: "https://raw.githubusercontent.com/sbalajipune/societyapp/feature/cicd/cicd/member-service/tests/dev.postman_environment.json"

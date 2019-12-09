@@ -3,8 +3,10 @@ try {
     node('maven') {
         // download and configure all common cicd stuff
         dir('cicd') {
+            checkout([$class: 'GitSCM', branches: [[name: 'feature/cicd']],
+                 userRemoteConfigs: [[url: 'https://github.com/sbalajipune/societyapp.git']]])
             // load groovy functions
-            newman = load 'https://raw.githubusercontent.com/sbalajipune/societyapp/feature/cicd/cicd/pipelines/functions/newman.groovy'
+            newman = load 'societyapp/cicd/pipelines/functions/newman.groovy'
         }
         stage('build') {
           openshift.withCluster() {

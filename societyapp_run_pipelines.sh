@@ -5,10 +5,10 @@ echo "Wait for 10 mins for this pipeline to finish so that other builds will be 
 sleep 600
 oc start-build vehicle-app-pipeline
 sleep 60
-echo "Wait for 1 min to finish the build"
+echo "Wait for 2 mins to finish the build"
 oc start-build parking-app-pipeline
-echo "Wait for 1 min to finish the build"
-sleep 60
+echo "Wait for 2 mins to finish the build"
+sleep 120
 oc start-build apartment-app-pipeline
-echo "Wait for 1 min to finish the build"
-sleep 60
+echo "Wait for 2 mins to finish the build"
+sleep 120

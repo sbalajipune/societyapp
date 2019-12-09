@@ -1023,6 +1023,6 @@ parameters:
   required: true
   value: openshift
 - name: POSTMAN_TESTS_COLLECTION
-  value: "https://raw.githubusercontent.com/sbalajipune/societyapp/feature/cicd/cicd/member-service/tests/member-service.postman_collection.json"
+  value: "https://raw.githubusercontent.com/sbalajipune/societyapp/feature/cicd/member-service/tests/member-service.postman_collection.json"
 - name: POSTMAN_DEV_ENVIRONMENT_CONFIG
-  value: "https://raw.githubusercontent.com/sbalajipune/societyapp/feature/cicd/cicd/member-service/tests/dev.postman_environment.json"
+  value: "https://raw.githubusercontent.com/sbalajipune/societyapp/feature/cicd/member-service/tests/dev.postman_environment.json"

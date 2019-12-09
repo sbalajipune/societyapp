@@ -859,91 +859,91 @@ objects:
       type: ImageChange
     - type: ConfigChange
 ###################Nexus#########################
-- apiVersion: v1
-  kind: Service
-  metadata:
-    labels:
-      app: nexus
-    name: nexus
-  spec:
-    ports:
-      - name: 8081-tcp
-        port: 8081
-        protocol: TCP
-        targetPort: 8081
-    selector:
-      app: nexus
-      deploymentconfig: nexus
-    sessionAffinity: None
-    type: ClusterIP
-  status:
-    loadBalancer: {}
+#- apiVersion: v1
+#  kind: Service
+#  metadata:
+#    labels:
+#      app: nexus
+#    name: nexus
+#  spec:
+#    ports:
+#      - name: 8081-tcp
+#        port: 8081
+#        protocol: TCP
+#        targetPort: 8081
+#    selector:
+#      app: nexus
+#      deploymentconfig: nexus
+#    sessionAffinity: None
+#    type: ClusterIP
+#  status:
+#    loadBalancer: {}
 
-- apiVersion: v1
-  kind: DeploymentConfig
-  metadata:
-    labels:
-      app: nexus
-    name: nexus
-  spec:
-    replicas: 1
-    revisionHistoryLimit: 10
-    selector:
-      app: nexus
-      deploymentconfig: nexus
-    strategy:
-      activeDeadlineSeconds: 21600
-      resources: {}
-      rollingParams:
-        intervalSeconds: 1
-        maxSurge: 25%
-        maxUnavailable: 25%
-        timeoutSeconds: 600
-        updatePeriodSeconds: 1
-      type: Rolling
-    template:
-      metadata:
-        labels:
-          app: nexus
-          deploymentconfig: nexus
-        name: nexus
-      spec:
-        containers:
-          - image: >-
-              sonatype/nexus@sha256:7aff428438e70fae044dd25eb823e14117c4906156844891384721eb3e90b385
-            imagePullPolicy: Always
-            name: nexus
-            ports:
-              - containerPort: 8081
-                protocol: TCP
-            resources: {}
-            terminationMessagePath: /dev/termination-log
-            terminationMessagePolicy: File
-            volumeMounts:
-              - mountPath: /sonatype-work
-                name: nexus-volume-1
-        dnsPolicy: ClusterFirst
-        restartPolicy: Always
-        schedulerName: default-scheduler
-        securityContext: {}
-        terminationGracePeriodSeconds: 30
-        volumes:
-          - emptyDir: {}
-            name: nexus-volume-1
-    test: false
-    triggers:
-      - type: ConfigChange
-      - imageChangeParams:
-          automatic: true
-          containerNames:
-            - nexus
-          from:
-            kind: ImageStreamTag
-            name: 'nexus:latest'
-            namespace: nexusdemo
-          lastTriggeredImage: >-
-            sonatype/nexus@sha256:7aff428438e70fae044dd25eb823e14117c4906156844891384721eb3e90b385
-        type: ImageChange
+#- apiVersion: v1
+#  kind: DeploymentConfig
+#  metadata:
+#    labels:
+#      app: nexus
+#    name: nexus
+#  spec:
+#    replicas: 1
+#    revisionHistoryLimit: 10
+#    selector:
+#      app: nexus
+#      deploymentconfig: nexus
+#    strategy:
+#      activeDeadlineSeconds: 21600
+#      resources: {}
+#      rollingParams:
+#        intervalSeconds: 1
+#        maxSurge: 25%
+#        maxUnavailable: 25%
+#        timeoutSeconds: 600
+#        updatePeriodSeconds: 1
+#      type: Rolling
+#    template:
+#      metadata:
+#        labels:
+#          app: nexus
+#          deploymentconfig: nexus
+#        name: nexus
+#      spec:
+#        containers:
+#          - image: >-
+#              sonatype/nexus@sha256:7aff428438e70fae044dd25eb823e14117c4906156844891384721eb3e90b385
+#            imagePullPolicy: Always
+#            name: nexus
+#            ports:
+#              - containerPort: 8081
+#                protocol: TCP
+#            resources: {}
+#            terminationMessagePath: /dev/termination-log
+#            terminationMessagePolicy: File
+#            volumeMounts:
+#              - mountPath: /sonatype-work
+#                name: nexus-volume-1
+#        dnsPolicy: ClusterFirst
+#        restartPolicy: Always
+#        schedulerName: default-scheduler
+#        securityContext: {}
+#        terminationGracePeriodSeconds: 30
+#        volumes:
+#          - emptyDir: {}
+#            name: nexus-volume-1
+#    test: false
+#   triggers:
+#      - type: ConfigChange
+#      - imageChangeParams:
+#          automatic: true
+#          containerNames:
+#            - nexus
+#          from:
+#            kind: ImageStreamTag
+#            name: 'nexus:latest'
+#            namespace: nexusdemo
+#          lastTriggeredImage: >-
+#            sonatype/nexus@sha256:7aff428438e70fae044dd25eb823e14117c4906156844891384721eb3e90b385
+#        type: ImageChange
 
 ###################Parameters####################
 parameters:

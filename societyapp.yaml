@@ -804,11 +804,11 @@ objects:
         containers:
         - env:
           - name: POSTGRESQL_USER
-            value: ${DB_USERNAME}
+            value: ${POSTGRES_USER}
           - name: POSTGRESQL_PASSWORD
-            value: ${DB_PASSWORD}
+            value: ${POSTGRES_PASSWORD}
           - name: POSTGRESQL_DATABASE
-            value: ${POSTGRES_DB}
+            value: ${POSTGRES_DATABASE}
           image: postgresql
           imagePullPolicy: Always
           name: ${POSTGRES_HOST}

@@ -4,7 +4,7 @@ try {
         // download and configure all common cicd stuff
         dir('cicd') {
             // load groovy functions
-            newman = load './pipelines/functions/newman.groovy'
+            newman = load '/var/lib/jenkins/jobs/societyapp/jobs/societyapp-member-app-pipeline/workspace/societyapp/cicd/pipelines/functions/newman.groovy'
         }
         stage('build') {
           openshift.withCluster() {

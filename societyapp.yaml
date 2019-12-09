@@ -518,7 +518,7 @@ objects:
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 1
-          name: ${MEMBER_APP_NAME}
+          name: ${PARKING_APP_NAME}
           ports:
           - containerPort: 8778
             name: jolokia
@@ -696,7 +696,7 @@ objects:
             value: ${POSTGRES_USER}
           - name: POSTGRES_PASSWORD
             value: ${POSTGRES_PASSWORD}
-          image: ${MEMBER_APP_NAME}
+          image: ${APARTMENT_APP_NAME}
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -708,7 +708,7 @@ objects:
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 1
-          name: ${MEMBER_APP_NAME}
+          name: ${APARTMENT_APP_NAME}
           ports:
           - containerPort: 8778
             name: jolokia
@@ -961,7 +961,7 @@ parameters:
   displayName: Name
   name: VEHICLE_APP_NAME
   required: true
-  value: vehicle-service
+  value: vehicles-service
 - description: parking-service app name.
   displayName: Name
   name: PARKING_APP_NAME

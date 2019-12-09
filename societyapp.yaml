@@ -808,7 +808,7 @@ objects:
           - name: POSTGRESQL_PASSWORD
             value: ${POSTGRES_PASSWORD}
           - name: POSTGRESQL_DATABASE
-            value: ${POSTGRES_DATABASE}
+            value: ${POSTGRES_DB}
           image: postgresql
           imagePullPolicy: Always
           name: ${POSTGRES_HOST}

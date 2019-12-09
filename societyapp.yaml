@@ -108,7 +108,7 @@ objects:
       deploymentconfig: ${MEMBER_APP_NAME}
     strategy:
       resources: {}
-      type: Recreate
+      type: Rolling
     template:
       metadata:
         labels:
@@ -298,7 +298,7 @@ objects:
       deploymentconfig: ${VEHICLE_APP_NAME}
     strategy:
       resources: {}
-      type: Recreate
+      type: Rolling
     template:
       metadata:
         labels:
@@ -488,7 +488,7 @@ objects:
       deploymentconfig: ${PARKING_APP_NAME}
     strategy:
       resources: {}
-      type: Recreate
+      type: Rolling
     template:
       metadata:
         labels:
@@ -678,7 +678,7 @@ objects:
       deploymentconfig: ${APARTMENT_APP_NAME}
     strategy:
       resources: {}
-      type: Recreate
+      type: Rolling
     template:
       metadata:
         labels:
@@ -793,7 +793,7 @@ objects:
     selector:
       deploymentconfig: ${POSTGRES_HOST}
     strategy:
-      type: Recreate
+      type: Rolling
     template:
       metadata:
         labels:

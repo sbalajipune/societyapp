@@ -8,14 +8,14 @@ public class ParkingDetails implements Serializable {
     private String apartmentId;
     private Member owner;
     private int level;
-    private List<Vehicle> vehicles;
+    private List<VehicleDetails> vehicles;
 
     ParkingDetails()
     {
 
     }
 
-    public ParkingDetails(String parkingId, String apartmentId, Member owner, int level, List<Vehicle> vehicles) {
+    public ParkingDetails(String parkingId, String apartmentId, Member owner, int level, List<VehicleDetails> vehicles) {
         this.parkingId = parkingId;
         this.apartmentId = apartmentId;
         this.owner = owner;
@@ -55,11 +55,11 @@ public class ParkingDetails implements Serializable {
         this.level = level;
     }
 
-    public List<Vehicle> getVehicles() {
+    public List<VehicleDetails> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(List<Vehicle> vehicles) {
+    public void setVehicles(List<VehicleDetails> vehicles) {
         this.vehicles = vehicles;
     }
 }

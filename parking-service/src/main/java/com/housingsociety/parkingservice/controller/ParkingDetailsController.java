@@ -45,10 +45,10 @@ public class ParkingDetailsController {
         LOG.info("Invoking member-service");
         Member member = restTemplate.getForObject(memberServiceURL + "members/memberId/" + parking.getOwnerId(),  Member.class);
         LOG.info("Invoking vehicle-service");
-        List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+        List<VehicleDetails> vehicleList = new ArrayList<VehicleDetails>();
         for (String registrationId : parking.getVehicles().split(",")) {
-            Vehicle vehicle = restTemplate.getForObject(vehicleServiceURL + "vehicledetails/registrationId/" + registrationId, Vehicle.class);
-            vehicleList.add(vehicle);
+            VehicleDetails vehicleDetails = restTemplate.getForObject(vehicleServiceURL + "vehicledetails/registrationId/" + registrationId, VehicleDetails.class);
+            vehicleList.add(vehicleDetails);
         }
         ParkingDetails parkingDetails = new ParkingDetails(parkingId, parking.getApartmentId(), member, parking.getLevel(), vehicleList);
         return parkingDetails;
@@ -76,10 +76,10 @@ public class ParkingDetailsController {
             LOG.info("Invoking member-service");
             Member member = restTemplate.getForObject(memberServiceURL + "members/memberId/" + parking.getOwnerId(),  Member.class);
             LOG.info("Invoking vehicle-service");
-            List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+            List<VehicleDetails> vehicleList = new ArrayList<VehicleDetails>();
             for (String registrationId : parking.getVehicles().split(",")) {
-                Vehicle vehicle = restTemplate.getForObject(vehicleServiceURL + "vehicledetails/registrationId/" + registrationId, Vehicle.class);
-                vehicleList.add(vehicle);
+                VehicleDetails vehicleDetails = restTemplate.getForObject(vehicleServiceURL + "vehicledetails/registrationId/" + registrationId, VehicleDetails.class);
+                vehicleList.add(vehicleDetails);
             }
             ParkingDetails parkingDetails = new ParkingDetails(parking.getParkingId(), parking.getApartmentId(), member, parking.getLevel(), vehicleList);
             parkingsDetailsList.add(parkingDetails);

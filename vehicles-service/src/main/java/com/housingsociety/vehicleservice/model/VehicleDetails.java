@@ -1,8 +1,9 @@
 package com.housingsociety.vehicleservice.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class VehicleDetails {
+public class VehicleDetails implements Serializable {
     private String registrationId;
     private Member owner;
     private String parkingId;

@@ -28,40 +28,18 @@ objects:
       name: member-app-pipeline
     name: member-app-pipeline
   spec:
+    source:
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
+        ref: ${SOURCE_REPOSITORY_REF}
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfile: |-
-          try {
-             timeout(time: 20, unit: 'MINUTES') {
-                node('maven') {
-                    stage('build') {
-                      openshift.withCluster() {
-                         openshift.withProject() {
-                            def bld = openshift.startBuild('${MEMBER_APP_NAME}')
-                            bld.untilEach {
-                              return it.object().status.phase == "Running"
-                            }
-                            bld.logs('-f')
-                         }  
-                      }
-                    }
-                    stage('deploy') {
-                      openshift.withCluster() {
-                        openshift.withProject() {
-                          def dc = openshift.selector('dc', '${MEMBER_APP_NAME}')
-                          dc.rollout().latest()
-                        }
-                      }
-                    }
-                  }
-             }
-          } catch (err) {
-             echo "in catch block"
-             echo "Caught: ${err}"
-             currentBuild.result = 'FAILURE'
-             throw err
-          }          
-      type: JenkinsPipeline
+        jenkinsfilePath: cicd/pipelines/Jenkinsfile
+        env:
+          - name: APP_NAME
+            value: ${MEMBER_APP_NAME}
+          - name: CICD_GIT_URL
+            value: ${SOURCE_REPOSITORY_URL}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -218,40 +196,18 @@ objects:
       name: vehicle-app-pipeline
     name: vehicle-app-pipeline
   spec:
+    source:
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
+        ref: ${SOURCE_REPOSITORY_REF}
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfile: |-
-          try {
-             timeout(time: 20, unit: 'MINUTES') {
-                node('maven') {
-                    stage('build') {
-                      openshift.withCluster() {
-                         openshift.withProject() {
-                            def bld = openshift.startBuild('${VEHICLE_APP_NAME}')
-                            bld.untilEach {
-                              return it.object().status.phase == "Running"
-                            }
-                            bld.logs('-f')
-                         }  
-                      }
-                    }
-                    stage('deploy') {
-                      openshift.withCluster() {
-                        openshift.withProject() {
-                          def dc = openshift.selector('dc', '${VEHICLE_APP_NAME}')
-                          dc.rollout().latest()
-                        }
-                      }
-                    }
-                  }
-             }
-          } catch (err) {
-             echo "in catch block"
-             echo "Caught: ${err}"
-             currentBuild.result = 'FAILURE'
-             throw err
-          }          
-      type: JenkinsPipeline
+        jenkinsfilePath: cicd/pipelines/Jenkinsfile
+        env:
+          - name: APP_NAME
+            value: ${VEHICLE_APP_NAME}
+          - name: CICD_GIT_URL
+            value: ${SOURCE_REPOSITORY_URL}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -408,40 +364,18 @@ objects:
       name: parking-app-pipeline
     name: parking-app-pipeline
   spec:
+    source:
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
+        ref: ${SOURCE_REPOSITORY_REF}
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfile: |-
-          try {
-             timeout(time: 20, unit: 'MINUTES') {
-                node('maven') {
-                    stage('build') {
-                      openshift.withCluster() {
-                         openshift.withProject() {
-                            def bld = openshift.startBuild('${PARKING_APP_NAME}')
-                            bld.untilEach {
-                              return it.object().status.phase == "Running"
-                            }
-                            bld.logs('-f')
-                         }  
-                      }
-                    }
-                    stage('deploy') {
-                      openshift.withCluster() {
-                        openshift.withProject() {
-                          def dc = openshift.selector('dc', '${PARKING_APP_NAME}')
-                          dc.rollout().latest()
-                        }
-                      }
-                    }
-                  }
-             }
-          } catch (err) {
-             echo "in catch block"
-             echo "Caught: ${err}"
-             currentBuild.result = 'FAILURE'
-             throw err
-          }          
-      type: JenkinsPipeline
+        jenkinsfilePath: cicd/pipelines/Jenkinsfile
+        env:
+          - name: APP_NAME
+            value: ${PARKING_APP_NAME}
+          - name: CICD_GIT_URL
+            value: ${SOURCE_REPOSITORY_URL}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -598,40 +532,18 @@ objects:
       name: apartment-app-pipeline
     name: apartment-app-pipeline
   spec:
+    source:
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
+        ref: ${SOURCE_REPOSITORY_REF}
     strategy:
       jenkinsPipelineStrategy:
-        jenkinsfile: |-
-          try {
-             timeout(time: 20, unit: 'MINUTES') {
-                node('maven') {
-                    stage('build') {
-                      openshift.withCluster() {
-                         openshift.withProject() {
-                            def bld = openshift.startBuild('${APARTMENT_APP_NAME}')
-                            bld.untilEach {
-                              return it.object().status.phase == "Running"
-                            }
-                            bld.logs('-f')
-                         }  
-                      }
-                    }
-                    stage('deploy') {
-                      openshift.withCluster() {
-                        openshift.withProject() {
-                          def dc = openshift.selector('dc', '${APARTMENT_APP_NAME}')
-                          dc.rollout().latest()
-                        }
-                      }
-                    }
-                  }
-             }
-          } catch (err) {
-             echo "in catch block"
-             echo "Caught: ${err}"
-             currentBuild.result = 'FAILURE'
-             throw err
-          }          
-      type: JenkinsPipeline
+        jenkinsfilePath: cicd/pipelines/Jenkinsfile
+        env:
+          - name: APP_NAME
+            value: ${APARTMENT_APP_NAME}
+          - name: CICD_GIT_URL
+            value: ${SOURCE_REPOSITORY_URL}
 - apiVersion: v1
   kind: BuildConfig
   metadata:

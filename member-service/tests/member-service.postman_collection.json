@@ -54,11 +54,24 @@
 							"if (responseCode.code === 200){",
 							"    // Check if the status code is 200",
 							"    tests[\"Status code is 200\"] = true;",
+							"    ",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    ",
+							"    if (jsonData.length !== 0)",
+							"    {",
+							"        tests[\"Response body is non-empty\"] = true;     ",
+							"    }",
+							"    else",
+							"    {",
+							"        tests[\"Response body is non-empty\"] = false;     ",
+							"    }",
 							"}",
 							"else",
 							"{",
 							"    tests[\"Status code is: \" + responseCode.code] = false;",
-							"}"
+							"}",
+							"",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -76,6 +89,120 @@
 					"path": [
 						"members",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMembersByApartmentId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15a148f9-d7bc-4294-96db-f73c43e07d39",
+						"exec": [
+							"if (responseCode.code === 200){",
+							"    // Check if the status code is 200",
+							"    tests[\"Status code is 200\"] = true;",
+							"    ",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    ",
+							"    if (jsonData.length !== 0)",
+							"    {",
+							"        tests[\"Response body is non-empty\"] = true;     ",
+							"    }",
+							"    else",
+							"    {",
+							"        tests[\"Response body is non-empty\"] = false;     ",
+							"    }",
+							"    ",
+							"    if (jsonData[0].memberId !== \"B-1002-1\")",
+							"    {",
+							"        tests[\"Data is correct as per input\"] = true;     ",
+							"    }",
+							"    else",
+							"    {",
+							"        tests[\"Data is correct as per input\"] = false;     ",
+							"    }",
+							"    ",
+							"}",
+							"else",
+							"{",
+							"    tests[\"Status code is: \" + responseCode.code] = false;",
+							"}",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}/members/apartment/B-1002",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"members",
+						"apartment",
+						"B-1002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMembersByMemberId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15a148f9-d7bc-4294-96db-f73c43e07d39",
+						"exec": [
+							"if (responseCode.code === 200){",
+							"    // Check if the status code is 200",
+							"    tests[\"Status code is 200\"] = true;",
+							"    ",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    ",
+							"    if (jsonData.memberId !== \"B-1002-1\")",
+							"    {",
+							"        tests[\"Data is correct as per input\"] = true;     ",
+							"    }",
+							"    else",
+							"    {",
+							"        tests[\"Data is correct as per input\"] = false;     ",
+							"    }",
+							"}",
+							"else",
+							"{",
+							"    tests[\"Status code is: \" + responseCode.code] = false;",
+							"}",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}/members/memberId/B-1002-1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"members",
+						"memberId",
+						"B-1002-1"
 					]
 				}
 			},
